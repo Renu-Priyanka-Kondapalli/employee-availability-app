@@ -1,0 +1,85 @@
+/* styles for app component */
+/* Global container to center content */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: Arial, sans-serif;
+}
+
+/* Card style for pages like availability, login, register */
+.app-card {
+  background: white;
+  padding: 24px 32px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading formatting */
+.app-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+button.secondary {
+  background-color: #ddd;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Status badge */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-AVAILABLE {
+  background-color: #c7f5d9;
+  color: #0b7a27;
+}
+
+.status-UNAVAILABLE {
+  background-color: #ffdddd;
+  color: #b30000;
+}
+
+.status-ON_LEAVE {
+  background-color: #ffecc2;
+  color: #a66b00;
+}
+
+/* Error and success messages */
+.error {
+  margin-top: 12px;
+  color: #c0392b;
+}
+
+.success {
+  margin-top: 12px;
+  color: #27ae60;
+}
