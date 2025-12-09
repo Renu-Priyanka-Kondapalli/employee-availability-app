@@ -6,6 +6,7 @@ com\example\employeeavailability\controller\EmployeeController$AvailabilityUpdat
 com\example\employeeavailability\model\Employee.class
 com\example\employeeavailability\config\JwtAuthenticationFilter.class
 com\example\employeeavailability\controller\HealthController.class
+com\example\employeeavailability\controller\HomeController.class
 com\example\employeeavailability\dto\RegisterRequest.class
 com\example\employeeavailability\model\AvailabilityStatus.class
 com\example\employeeavailability\controller\EmployeeController.class

@@ -28,23 +28,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers(
-                            "/hello",
-                            "/health",
-                            "/actuator/health",
-                            "/actuator/prometheus",
-                            "/actuator/info",
-                            "/v3/api-docs/**",
-                            "/swagger-ui/**"
-                    ).permitAll()
-                    .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
-                    .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .cors(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .authorizeHttpRequests(auth -> auth
+
+                        // Root page safe
+                        .requestMatchers("/").permitAll()
+
+                        // Public endpoints
+                        .requestMatchers("/hello", "/health").permitAll()
+
+                        // Actuator endpoints public
+                        .requestMatchers("/actuator/**").permitAll()
+
+                        // Authentication APIs public (POST + GET)
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        // Employee APIs require authentication
+                        .requestMatchers("/api/employees/**").authenticated()
+
+                        // Everything else requires login
+                        .anyRequest().authenticated()
+                )
+
+                // Add JWT filter before UsernamePasswordAuthenticationFilter
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -52,8 +62,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Adjust origins as needed for production
-        config.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
+
+        config.setAllowedOrigins(List.of("http://localhost:4200"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
