@@ -11,17 +11,6 @@
       {{ employee.availabilityStatus }}
     </span>
   </p>
-
-  <div>
-    <label for="status">Change status</label>
-    <select id="status" [ngModel]="employee.availabilityStatus"
-            (ngModelChange)="changeStatus($event)">
-      <option *ngFor="let s of statuses" [value]="s">
-        {{ s }}
-      </option>
-    </select>
-  </div>
-
   <label>Change status</label>
 <select [(ngModel)]="selectedStatus">
   <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
