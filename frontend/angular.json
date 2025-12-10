@@ -2,6 +2,13 @@
   "$schema": "https://json.schemastore.org/angular-cli.json",
   "version": 1,
   "defaultProject": "employee-availability-frontend",
+  "configurations": {
+  "production": {
+    "optimization": true,
+    "outputHashing": "all",
+    "sourceMap": false
+  }
+},
   "projects": {
     "employee-availability-frontend": {
       "projectType": "application",
