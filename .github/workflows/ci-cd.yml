@@ -62,4 +62,5 @@ jobs:
         run: npm install
 
       - name: Build frontend (Production)
-        run: npx ng build --configuration production
+        run: ./node_modules/.bin/ng build --configuration production
+
