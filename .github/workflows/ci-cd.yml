@@ -52,16 +52,15 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json', 'frontend/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build frontend
-        run: npm run start
+            ${{ runner.os }}-node-=
       - name: Install dependencies
         run: npm ci
       - name: Install Angular CLI
         run: npm install -g @angular/cli
       - name: Build Angular app
         run: ng build --configuration production
+      - name: Install dependencies
+        run: npm install
+      - name: Build frontend
+        run: npm run start
+
