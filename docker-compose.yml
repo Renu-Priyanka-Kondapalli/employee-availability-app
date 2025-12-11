@@ -11,14 +11,13 @@ services:
       MYSQL_DATABASE: employee_availability
       MYSQL_USER: appuser
       MYSQL_PASSWORD: apppassword
-    # ❌ REMOVE PORTS to avoid conflict with local MySQL
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
       - app-net
 
   backend:
-    build: ./backend
+    image: YOUR_DOCKERHUB_USERNAME/employee-backend:latest
     container_name: employee-backend
     restart: always
     depends_on:
@@ -34,7 +33,7 @@ services:
       - app-net
 
   frontend:
-    build: ./frontend
+    image: YOUR_DOCKERHUB_USERNAME/employee-frontend:latest
     container_name: employee-frontend
     restart: always
     depends_on:
